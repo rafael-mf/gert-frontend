@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav id="sidebar" [class.collapsed]="collapsed" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+      <div class="position-sticky pt-3">
+        <div class="d-flex justify-content-between align-items-center px-3 mb-3">
+          <h4 class="text-light">Assistência Técnica</h4>
+          <button type="button" class="btn-close btn-close-white d-md-none" aria-label="Close" (click)="toggleSidebar()"></button>
+        </div>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/dashboard" routerLinkActive="active">
+              <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/chamados" routerLinkActive="active">
+              <i class="fas fa-ticket-alt me-2"></i>Chamados
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/clientes" routerLinkActive="active">
+              <i class="fas fa-users me-2"></i>Clientes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/estoque" routerLinkActive="active">
+              <i class="fas fa-boxes me-2"></i>Estoque
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/tecnicos" routerLinkActive="active">
+              <i class="fas fa-user-cog me-2"></i>Técnicos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/relatorios" routerLinkActive="active">
+              <i class="fas fa-chart-bar me-2"></i>Relatórios
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <button type="button" class="btn btn-sm btn-outline-secondary d-md-none" (click)="toggleSidebar()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user me-1"></i> {{ authService.currentUserValue?.nome }}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" routerLink="/perfil">Perfil</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" (click)="logout()">Sair</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="content-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>

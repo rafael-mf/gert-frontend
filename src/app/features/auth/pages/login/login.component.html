@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Assistência Técnica - Login</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                formControlName="email"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+                placeholder="exemplo@email.com"
+              />
+              <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors['required']">Email é obrigatório</div>
+                <div *ngIf="f['email'].errors['email']">Email deve ser um endereço válido</div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="senha" class="form-label">Senha</label>
+              <input
+                type="password"
+                formControlName="senha"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['senha'].errors }"
+              />
+              <div *ngIf="submitted && f['senha'].errors" class="invalid-feedback">
+                <div *ngIf="f['senha'].errors['required']">Senha é obrigatória</div>
+              </div>
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary" [disabled]="loading">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                Entrar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
