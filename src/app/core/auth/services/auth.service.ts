@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Usuario } from '../../../shared/models/usuario.model';
 import { environment } from '../../../../environments/environment';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,21 @@ export class AuthService {
   public currentUser: Observable<Usuario | null>;
   private apiUrl = `${environment.apiUrl}/auth`;
 
-  constructor(private http: HttpClient) {
-    const storedUser = localStorage.getItem('currentUser');
-    this.currentUserSubject = new BehaviorSubject<Usuario | null>(storedUser ? JSON.parse(storedUser) : null);
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    // Initialize with null, then try to load from localStorage only if in browser
+    this.currentUserSubject = new BehaviorSubject<Usuario | null>(null);
+
+    // Only access localStorage in the browser environment
+    if (isPlatformBrowser(this.platformId)) {
+      const storedUser = localStorage.getItem('currentUser');
+      if (storedUser) {
+        this.currentUserSubject.next(JSON.parse(storedUser));
+      }
+    }
+
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -32,7 +45,12 @@ export class AuthService {
               ...response.usuario,
               token: response.token
             };
-            localStorage.setItem('currentUser', JSON.stringify(user));
+
+            // Only access localStorage in browser environment
+            if (isPlatformBrowser(this.platformId)) {
+              localStorage.setItem('currentUser', JSON.stringify(user));
+            }
+
             this.currentUserSubject.next(user);
             return user;
           }
@@ -42,7 +60,11 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('currentUser');
+    // Only access localStorage in browser environment
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('currentUser');
+    }
+
     this.currentUserSubject.next(null);
   }
 

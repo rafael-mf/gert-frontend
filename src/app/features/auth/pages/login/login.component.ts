@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../../core/auth/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // redirecionar para home se já estiver logado
     if (this.authService.currentUserValue) {
@@ -51,13 +52,15 @@ export class LoginComponent implements OnInit {
     // obter URL de retorno dos parâmetros da rota ou ir para '/' por padrão
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
-    // Preencher com valores salvos se existirem
-    const savedEmail = localStorage.getItem('savedEmail');
-    if (savedEmail) {
-      this.loginForm.patchValue({
-        email: savedEmail,
-        remember: true
-      });
+    // Preencher com valores salvos se existirem e estamos no navegador
+    if (isPlatformBrowser(this.platformId)) {
+      const savedEmail = localStorage.getItem('savedEmail');
+      if (savedEmail) {
+        this.loginForm.patchValue({
+          email: savedEmail,
+          remember: true
+        });
+      }
     }
   }
 
@@ -72,10 +75,10 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
 
-    // Salvar email se "lembrar-me" estiver marcado
-    if (this.f['remember'].value) {
+    // Salvar email se "lembrar-me" estiver marcado e estamos no navegador
+    if (isPlatformBrowser(this.platformId) && this.f['remember'].value) {
       localStorage.setItem('savedEmail', this.f['email'].value);
-    } else {
+    } else if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('savedEmail');
     }
 
