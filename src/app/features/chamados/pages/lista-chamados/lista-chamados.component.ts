@@ -9,4 +9,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './lista-chamados.component.html',
   styleUrl: './lista-chamados.component.scss'
 })
-export class Lista-chamadosComponent {}
+export class ListaChamadosComponent {}

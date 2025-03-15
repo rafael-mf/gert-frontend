@@ -9,4 +9,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './relatorio-financeiro.component.html',
   styleUrl: './relatorio-financeiro.component.scss'
 })
-export class Relatorio-financeiroComponent {}
+export class RelatorioFinanceiroComponent {}

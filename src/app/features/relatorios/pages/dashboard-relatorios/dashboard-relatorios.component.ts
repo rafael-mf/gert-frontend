@@ -9,4 +9,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './dashboard-relatorios.component.html',
   styleUrl: './dashboard-relatorios.component.scss'
 })
-export class Dashboard-relatoriosComponent {}
+export class DashboardRelatoriosComponent {}

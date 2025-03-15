@@ -9,4 +9,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './novo-chamado.component.html',
   styleUrl: './novo-chamado.component.scss'
 })
-export class Novo-chamadoComponent {}
+export class NovoChamadoComponent {}

@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-detalhe-chamado',
+  selector: 'app-lista-peca',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  templateUrl: './detalhe-chamado.component.html',
-  styleUrl: './detalhe-chamado.component.scss'
+  templateUrl: './lista-peca.component.html',
+  styleUrl: './lista-peca.component.scss'
 })
-export class DetalheChamadoComponent {}
+export class ListaPecaComponent {}

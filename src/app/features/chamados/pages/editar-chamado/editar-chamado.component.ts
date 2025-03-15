@@ -9,4 +9,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './editar-chamado.component.html',
   styleUrl: './editar-chamado.component.scss'
 })
-export class Editar-chamadoComponent {}
+export class EditarChamadoComponent {}

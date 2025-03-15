@@ -9,4 +9,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './detalhe-peca.component.html',
   styleUrl: './detalhe-peca.component.scss'
 })
-export class Detalhe-pecaComponent {}
+export class DetalhePecaComponent {}

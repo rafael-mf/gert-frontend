@@ -9,4 +9,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './editar-peca.component.html',
   styleUrl: './editar-peca.component.scss'
 })
-export class Editar-pecaComponent {}
+export class EditarPecaComponent {}

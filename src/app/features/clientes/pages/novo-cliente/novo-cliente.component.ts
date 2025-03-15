@@ -9,4 +9,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './novo-cliente.component.html',
   styleUrl: './novo-cliente.component.scss'
 })
-export class Novo-clienteComponent {}
+export class NovoClienteComponent {}

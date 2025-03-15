@@ -9,4 +9,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './relatorio-chamados.component.html',
   styleUrl: './relatorio-chamados.component.scss'
 })
-export class Relatorio-chamadosComponent {}
+export class RelatorioChamadosComponent {}

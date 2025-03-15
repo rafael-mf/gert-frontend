@@ -20,6 +20,13 @@ export class LoginComponent implements OnInit {
   error = '';
   showPassword = false;
 
+  // Credenciais de teste - Remova em produção
+  testCredentials = [
+    { role: 'Administrador', email: 'admin@sistema.com', password: 'admin123' },
+    { role: 'Técnico', email: 'tecnico@sistema.com', password: 'tecnico123' },
+    { role: 'Atendente', email: 'atendente@sistema.com', password: 'atendente123' }
+  ];
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -84,6 +91,17 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+
+  // Helper para pré-preencher credenciais de teste (para desenvolvimento apenas)
+  preencherCredenciais(role: string) {
+    const credencial = this.testCredentials.find(c => c.role === role);
+    if (credencial) {
+      this.loginForm.patchValue({
+        email: credencial.email,
+        senha: credencial.password
+      });
+    }
   }
 
   togglePasswordVisibility() {

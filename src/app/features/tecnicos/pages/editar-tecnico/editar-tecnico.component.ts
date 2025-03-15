@@ -9,4 +9,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './editar-tecnico.component.html',
   styleUrl: './editar-tecnico.component.scss'
 })
-export class Editar-tecnicoComponent {}
+export class EditarTecnicoComponent {}

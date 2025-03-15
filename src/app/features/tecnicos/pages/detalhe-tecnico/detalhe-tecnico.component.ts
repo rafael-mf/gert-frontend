@@ -9,4 +9,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './detalhe-tecnico.component.html',
   styleUrl: './detalhe-tecnico.component.scss'
 })
-export class Detalhe-tecnicoComponent {}
+export class DetalheTecnicoComponent {}
