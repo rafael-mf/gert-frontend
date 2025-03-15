@@ -7,4 +7,5 @@ export interface Usuario {
   ativo: boolean;
   dataCriacao?: Date;
   ultimoAcesso?: Date;
+  token?: string; // Adicionado o token necessário para o interceptor
 }

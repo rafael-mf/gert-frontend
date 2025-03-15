@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-home',
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './dashboard-home.component.html',
-  styleUrls: ['./dashboard-home.component.scss']
+  styleUrl: './dashboard-home.component.scss'
 })
 export class DashboardHomeComponent implements OnInit {
   // Dados de exemplo para o dashboard
@@ -13,13 +17,13 @@ export class DashboardHomeComponent implements OnInit {
   totalClientes = 0;
   totalFaturamento = 0;
   totalPecasEstoque = 0;
-  
+
   // Dados para gráficos
   chamadosPorStatus = {
     labels: ['Aberto', 'Em análise', 'Aguardando aprovação', 'Em andamento', 'Aguardando peça', 'Concluído', 'Cancelado'],
     data: [30, 15, 10, 25, 5, 40, 5]
   };
-  
+
   faturamentoPorMes = {
     labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
     data: [12000, 15000, 18000, 14000, 21000, 22000]
